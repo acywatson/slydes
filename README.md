@@ -23,6 +23,10 @@ import { Slyder } from 'slydes';
 ...
 ```
 
+## Storybook
+
+To view the storybook, checkout the package locally and run ```npm run storybook```.
+
 ## Styling
 
 
@@ -36,3 +40,4 @@ To start the project locally:
 2. Run ```npm run dev```
 
 3. Have fun!
+
