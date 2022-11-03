@@ -30,7 +30,7 @@ interface Props {
   hideValue?: boolean
 }
 
-export default function Slider({
+export default function Slyder({
   label,
   id,
   max,
@@ -57,11 +57,11 @@ export default function Slider({
 
   return (
     <div className={`slider-container ${className ?? ''}`}>
-      <div className="slider-min-label">{minLabel !== undefined ? minLabel : min}</div>
+      <div className="slider-label">
+        <label htmlFor={id}>{label}</label>
+      </div>
       <div className="slider-input-container">
-        <div className="slider-label">
-          <label htmlFor={id}>{label}</label>
-        </div>
+        <div className="slider-min-label">{minLabel !== undefined ? minLabel : min}</div>
         <div className="slider-input">
           {initialValue !== undefined ? (
             <input
@@ -87,13 +87,11 @@ export default function Slider({
             />
           )}
         </div>
-        {hideValue ? (
-          <div className="slider-value">
-            <output htmlFor={id}>{currentValue ?? value}</output>
-          </div>
-        ) : null}
+        <div className="slider-max-label">{maxLabel !== undefined ? maxLabel : max}</div>
       </div>
-      <div className="slider-max-label">{maxLabel !== undefined ? maxLabel : max}</div>
+      <div className="slider-value">
+        {!hideValue ? <output htmlFor={id}>{currentValue ?? value}</output> : null}
+      </div>
     </div>
   )
 }

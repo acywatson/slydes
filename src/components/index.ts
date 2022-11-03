@@ -1,3 +1,3 @@
-import Slider from './slyder/Slyder'
+import Slyder from './slyder/Slyder'
 
-export { Slider }
+export { Slyder }

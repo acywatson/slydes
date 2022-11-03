@@ -7,9 +7,9 @@
 2. Import the Slider component and use it in your React App:
 
 ```
-import { Slider } from 'slydes';
+import { Slyder } from 'slydes';
 ...
-<Slider
+<Slyder
 	max={100}
 	min={1}
 	minLabel={"1%"}

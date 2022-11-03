@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import './App.css'
-import { Slider } from 'src/components'
+import { Slyder } from 'src/components'
 
 function App(): JSX.Element {
   const [value, setValue] = useState<number>(10)
@@ -9,7 +9,7 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <div>
-        <Slider
+        <Slyder
           id={'my-slider'}
           label={'Awesomeness'}
           min={1}
@@ -21,7 +21,6 @@ function App(): JSX.Element {
           value={value}
         />
       </div>
-      <div></div>
     </div>
   )
 }
