@@ -1,0 +1,18 @@
+.slider-container {
+	display: flex;
+}
+
+.slider-input-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.slider-input {
+	padding: 10px;
+}
+
+.slider-min-label, .slider-max-label {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

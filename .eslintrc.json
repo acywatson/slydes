@@ -18,5 +18,7 @@
         "react"
     ],
     "rules": {
+        "no-tabs": "warn",
+        "no-mixed-spaces-and-tabs": "warn"
     }
 }
