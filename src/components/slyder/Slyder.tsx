@@ -12,8 +12,10 @@ interface Props {
   min: number
   /* The amount to increment the value by when receiving user input. */
   step: number
+  /* Space-separated CSS class names that will be applied to the component */
+  className?: string
   /* Fires each time the input value changes without waiting for a mouseup event. */
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   /* The label to be used for the maximum value of the range. */
   maxLabel?: string
   /* The label to be used for the minimum value of the range. */
@@ -24,6 +26,8 @@ interface Props {
   value?: number
   /* Whether or not to disable the input. */
   disabled?: boolean
+  /* Whether or not to hide the current value of the input. Useful if you want to render it differently. */
+  hideValue?: boolean
 }
 
 export default function Slider({
@@ -32,23 +36,27 @@ export default function Slider({
   max,
   min,
   step,
+  className,
   onChange,
   maxLabel,
   minLabel,
   value,
   initialValue,
   disabled = false,
+  hideValue = false,
 }: Props): JSX.Element {
   const [currentValue, setCurrentValue] = React.useState<number | undefined>(initialValue)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (initialValue !== undefined) {
       setCurrentValue(parseInt(e.target.value))
     }
-    onChange(e)
+    if (onChange !== undefined) {
+      onChange(e)
+    }
   }
 
   return (
-    <div className="slider-container">
+    <div className={`slider-container ${className ?? ''}`}>
       <div className="slider-min-label">{minLabel !== undefined ? minLabel : min}</div>
       <div className="slider-input-container">
         <div className="slider-label">
@@ -79,9 +87,11 @@ export default function Slider({
             />
           )}
         </div>
-        <div className="slider-value">
-          <output htmlFor={id}>{currentValue ?? value}</output>
-        </div>
+        {hideValue ? (
+          <div className="slider-value">
+            <output htmlFor={id}>{currentValue ?? value}</output>
+          </div>
+        ) : null}
       </div>
       <div className="slider-max-label">{maxLabel !== undefined ? maxLabel : max}</div>
     </div>
