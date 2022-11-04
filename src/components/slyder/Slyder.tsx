@@ -26,8 +26,8 @@ interface Props {
   value?: number
   /* Whether or not to disable the input. */
   disabled?: boolean
-  /* Whether or not to hide the current value of the input. Useful if you want to render it differently. */
-  hideValue?: boolean
+  /* Function governing how to render the value below the input. Defaults to the value itself. */
+  renderValue?: (value: number) => JSX.Element | null
 }
 
 export default function Slyder({
@@ -43,7 +43,7 @@ export default function Slyder({
   value,
   initialValue,
   disabled = false,
-  hideValue = false,
+  renderValue,
 }: Props): JSX.Element {
   const [currentValue, setCurrentValue] = React.useState<number | undefined>(initialValue)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -53,6 +53,14 @@ export default function Slyder({
     if (onChange !== undefined) {
       onChange(e)
     }
+  }
+
+  const getValue = (): JSX.Element | null => {
+    const val = currentValue ?? value
+    if (val === undefined) {
+      return null
+    }
+    return renderValue != null ? renderValue(val) : <>val</>
   }
 
   return (
@@ -90,7 +98,7 @@ export default function Slyder({
         <div className="slider-max-label">{maxLabel !== undefined ? maxLabel : max}</div>
       </div>
       <div className="slider-value">
-        {!hideValue ? <output htmlFor={id}>{currentValue ?? value}</output> : null}
+        <output htmlFor={id}>{getValue()}</output>
       </div>
     </div>
   )

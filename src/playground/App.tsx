@@ -19,6 +19,7 @@ function App(): JSX.Element {
             setValue(parseInt(e.target.value))
           }}
           value={value}
+          renderValue={(val) => <>{`${val}%`}</>}
         />
       </div>
     </div>
