@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1. Install the package with ```npm run start```
+1. Install the package with ```npm install slydes```
 
 2. Import the Slider component and use it in your React App:
 
